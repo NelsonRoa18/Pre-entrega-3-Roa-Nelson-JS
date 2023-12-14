@@ -1,6 +1,3 @@
-
-let especialistas = JSON.parse(localStorage.getItem('Especialistas'));
-
 /// EXISTEN DOS MEDIOS PARA GUARDAR EN STORAGE
 
 
@@ -285,7 +282,10 @@ function traerEspecialistasDelLocalStorage() {
     especialistasLocalStorage.length !== 0 && traerEspecialistasDelLocalStorage;
 
 }
+
+let especialistas = JSON.parse(localStorage.getItem('Especialistas'));
   
+cargarEspecialistasEnLocalStorage();
 
 function cargarEspecialistas(array, id) {
 
@@ -304,7 +304,7 @@ function cargarEspecialistas(array, id) {
 
 }
 
-cargarEspecialistasEnLocalStorage();
+
 traerEspecialistasDelLocalStorage();
 
 btnadministrador.addEventListener("click", muestraTablaYBoton);
