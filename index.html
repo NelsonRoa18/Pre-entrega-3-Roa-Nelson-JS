@@ -84,34 +84,35 @@
                     </tfoot>
                 </table>
             </div>
+            <div class="col-md-8 hide" id="div__input__pacientes">
+
+                <div class="mb-3">
+                    <label class="form-label input__especialistas">Especialista</label>
+                    <select class="form-select" aria-label="Default select example" id="especialistas">
+                        <option value="0"> Elije un especialista... </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <form class="hide" id="form__paciente">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="nombre__input" placeholder="Nombre">
+                            <label for="floatingInput">Nombre </label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="apellido__input" placeholder="Apellido">
+                            <label for="floatingPassword">Apellido</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="edad__input" placeholder="Edad">
+                            <label for="floatingPassword">Edad</label>
+                        </div>
+                        <button class="btn btn-primary" type="submit" id="btn__turno">Reservar Turno</button>
+                    </form>
+                </div>
+            </div>
         </div>
 
-        <div class="col-md-8 hide" id="div__input__pacientes">
 
-            <div class="mb-3">
-                <label class="form-label input__especialistas">Especialista</label>
-                <select class="form-select" aria-label="Default select example" id="especialista">
-                    <option value="0"> Elije un especialista... </option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <form class="hide" id="form__paciente">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="nombre__input" placeholder="Nombre">
-                        <label for="floatingInput">Nombre </label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="apellido__input" placeholder="Apellido">
-                        <label for="floatingPassword">Apellido</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="number" class="form-control" id="edad__input" placeholder="Edad">
-                        <label for="floatingPassword">Edad</label>
-                    </div>
-                    <button class="btn btn-primary" type="submit" id="btn__turno">Reservar Turno</button>
-                </form>
-            </div>
-        </div>
 
     </div>
 
