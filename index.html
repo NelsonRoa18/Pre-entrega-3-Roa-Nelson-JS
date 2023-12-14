@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <title>Consultorio Piculi</title>
+</head>
+
+<body>
+    <h1 id="mi-header" class="text-center fondo">Consultorio Fragas</h1>
+    <h1 id="mi-header-2" class="text-center">Bienvenido</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" id="botones">
+                <h3 class="text-center" id="pregunta__a__usuario"> ¿Que tipo de usuario es? </h3>
+                <h3 class="text-center hide" id="bienvenida__administrador"> Bienvenido Administrador </h3>
+                <h3 class="text-center hide" id="bienvenida__paciente"> Bienvenido Paciente </h3>
+                <div class="d-grid gap-2 col-6 mx-auto">
+
+                    <button class="btn btn-primary" type="button" id="administrador">Administrador</button>
+                    <button class="btn btn-primary" type="button" id="paciente">Paciente</button>
+                    <button class="btn btn-primary" type="button" id="salir">Salir</button>
+
+                </div>
+            </div>
+
+            <div class="col-md-8 hide" id="div__contenedor__tabla">
+                <div id="contenedor-tabla" class="container">
+                    <h3 class="text-center"> Estos son los turnos agendados </h3>
+                    <table class="table table-dark text-center" id="tabla__de__turnos">
+                        <thead class="thead-dark">
+                            <tr id="trId">
+                                <th># Turno</th>
+                                <th>Nombre</th>
+                                <th>Especialista</th>
+                                <th>Consultorio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="turnos" class="table-striped text-center">
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th id="total"></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+
+                    <h2 id="" class="text-center"> Filtrar por medico</h2>
+
+                    <div class="mb-3">
+                        <label class="text-center" for="filtrado"> Ingrese el especialista por el cual desea
+                            filtrar</label>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="Default select example" for= "filtrado" id="especialista__a__filtrar">
+                            <option value="0"> Elije un especialista... </option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <table class="table table-primary text-center" id="tabla__de__filtrado">
+                    <thead class="thead-primary">
+                        <tr>
+                            <th># Turno</th>
+                            <th>Nombre</th>
+                            <th>Especialista</th>
+                            <th>Consultorio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="turnos__filtrados" class="table-striped text-center">
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th id="total"></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-8 hide" id="div__input__pacientes">
+
+            <div class="mb-3">
+                <label class="form-label input__especialistas">Especialista</label>
+                <select class="form-select" aria-label="Default select example" id="especialista">
+                    <option value="0"> Elije un especialista... </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <form class="hide" id="form__paciente">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="nombre__input" placeholder="Nombre">
+                        <label for="floatingInput">Nombre </label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="apellido__input" placeholder="Apellido">
+                        <label for="floatingPassword">Apellido</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="edad__input" placeholder="Edad">
+                        <label for="floatingPassword">Edad</label>
+                    </div>
+                    <button class="btn btn-primary" type="submit" id="btn__turno">Reservar Turno</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!--HOLAAA!-->
+    <script src="Paciente.js"></script>
+    <Script src="Turno.js"></script>
+    <script src="app.js"></script>
+    <script src="app1.js"></script>
+</body>
+
+</html>
