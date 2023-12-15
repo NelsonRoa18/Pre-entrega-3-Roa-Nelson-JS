@@ -1,33 +1,13 @@
-/// EXISTEN DOS MEDIOS PARA GUARDAR EN STORAGE
 
+$(document).ready(function () {
+    $('#myModal').modal('toggle')
+});
 
-// const pacientes = [];
-
-// agregarPaciente(pacientes, 'Pepe', 'Mujica', 22);
-// agregarPaciente(pacientes, 'Jose', 'Pepito', 24);
-// agregarPaciente(pacientes, 'Roberto', 'Peperola', 25);
-// agregarPaciente(pacientes, 'Anacleto', 'Rojas', 15);
-// agregarPaciente(pacientes, 'Jeperta', 'Gagata', 18);
-// agregarPaciente(pacientes, 'Pepe', 'Mujica', 22);
-// agregarPaciente(pacientes, 'Jose', 'Pepito', 24);
-// agregarPaciente(pacientes, 'Roberto', 'Peperola', 25);
-// agregarPaciente(pacientes, 'Pepe', 'Mujica', 22);
-// agregarPaciente(pacientes, 'Roberto', 'Peperola', 25);
-
-// const pacientesJSON = JSON.stringify(pacientes);
-
-// localStorage.setItem('Pacientes', pacientesJSON);
-
-// let pacientes = [];
+let especialistas = JSON.parse(localStorage.getItem('Especialistas'));
 
 let pacientes = JSON.parse(localStorage.getItem('Pacientes'));
 
 let turnos = [];
-
-
-//let turnos = [];
-
-// let turnos = JSON.parse(localStorage.getItem('Turnos'));
 
 
 const btnadministrador = document.getElementById('administrador');
@@ -57,6 +37,72 @@ const selectEspecialistas = document.getElementById('especialistas');
 const btnReservarTurno = document.getElementById('btn__turno');
 
 const buscarTurnosDelEspecialista = document.getElementById('especialista__a__filtrar');
+
+
+function traerTurnos() {
+
+    turnosLocalStorage = JSON.parse(localStorage.getItem('Turnos'));
+    console.log(turnosLocalStorage);
+
+    if (turnosLocalStorage === null) {
+
+        return 0;
+
+    } else {
+        if (turnos.length == 0 && turnosLocalStorage.length !== 0) {
+
+            turnos = turnosLocalStorage;
+            llenarTabla(turnos, 'turnos');
+
+        } else {
+            turnosLocalStorage !== null && turnosLocalStorage.length !== 0 && llenarTabla(turnos, 'turnos');
+        }
+    }
+
+
+
+
+}
+
+function cargarTurnosEnLocalStorage() {
+
+    const turnosJSON = JSON.stringify(turnos);
+    localStorage.setItem('Turnos', turnosJSON);
+
+}
+
+
+function cargarEspecialistasEnLocalStorage() {
+    const especialistas = ['Medico Clinico', 'Traumatologo', 'Psicologo', 'Dermatologo', 'Ginecologo'];
+
+    localStorage.setItem('Especialistas', JSON.stringify(especialistas));
+}
+
+function traerEspecialistasDelLocalStorage() {
+
+    especialistasLocalStorage = JSON.parse(localStorage.getItem('Especialistas'));
+
+    especialistasLocalStorage.length !== 0 && traerEspecialistasDelLocalStorage;
+
+}
+
+
+function cargarEspecialistas(array, id) {
+
+    let selectEspecialistas = document.getElementById(id);
+
+    array.forEach((element, index) => {
+        let option = document.createElement('option');
+
+        option.value = index + 1;
+        option.text = element;
+
+        selectEspecialistas.add(option);
+
+    });
+
+
+}
 
 function salir() {
 
@@ -127,7 +173,7 @@ function muestraFormPacientes() {
 
     valorSelect == 0 && formPaciente.classList.add('hide');
 
-    
+
 }
 
 function ocultaBoton() {
@@ -176,7 +222,7 @@ function reservarTurno(e) {
     cargarTurnosEnLocalStorage();
 
     limpiarFormulario(formPaciente);
-    
+
 }
 
 
@@ -237,87 +283,22 @@ function getRandomIntInclusive(min, max) {
 };
 
 
-function traerTurnos() {
-
-    turnosLocalStorage = JSON.parse(localStorage.getItem('Turnos'));
-    console.log(turnosLocalStorage);
-
-    if (turnosLocalStorage === null) {
-
-        return 0;
-
-    }else{
-        if (turnos.length == 0 && turnosLocalStorage.length !== 0) {
-
-            turnos = turnosLocalStorage;
-            llenarTabla(turnos, 'turnos');
-    
-        }else{
-            turnosLocalStorage !== null && turnosLocalStorage.length !== 0 && llenarTabla(turnos, 'turnos');
-        }
-    }
 
 
-    
-
-}
-
-function cargarTurnosEnLocalStorage() {
-
-    const turnosJSON = JSON.stringify(turnos);
-    localStorage.setItem('Turnos', turnosJSON);
-
-}
-
-
-function cargarEspecialistasEnLocalStorage() {
-    const especialistas = ['Medico Clinico', 'Traumatologo', 'Psicologo', 'Dermatologo', 'Ginecologo'];
-
-    localStorage.setItem('Especialistas', JSON.stringify(especialistas));
-}
-function traerEspecialistasDelLocalStorage() {
-
-    especialistasLocalStorage = JSON.parse(localStorage.getItem('Especialistas'));
-
-    especialistasLocalStorage.length !== 0 && traerEspecialistasDelLocalStorage;
-
-}
-
-let especialistas = JSON.parse(localStorage.getItem('Especialistas'));
-  
 cargarEspecialistasEnLocalStorage();
-
-function cargarEspecialistas(array, id) {
-
-    let selectEspecialistas = document.getElementById(id);
-
-    array.forEach((element, index) => {
-        let option = document.createElement('option');
-
-        option.value = index + 1;
-        option.text = element;
-
-        selectEspecialistas.add(option);
-
-    });
-
-
-}
-
-
 traerEspecialistasDelLocalStorage();
+cargarEspecialistas(especialistas, 'especialistas');
 
+btnadministrador.addEventListener("click", cargarEspecialistas(especialistas, 'especialista__a__filtrar'));
 btnadministrador.addEventListener("click", muestraTablaYBoton);
 btnadministrador.addEventListener("click", ocultaBoton);
-btnadministrador.addEventListener("click", cargarEspecialistas(especialistas, 'especialista__a__filtrar'));
+
 
 btnadministrador.addEventListener("click", traerTurnos);
-
 
 btnpaciente.addEventListener("click", muestraInputYBoton);
 btnpaciente.addEventListener("click", ocultaBoton);
 
-btnpaciente.addEventListener("click", cargarEspecialistas(especialistas, 'especialistas'));
 
 
 selectEspecialistas.addEventListener("change", muestraFormPacientes);
