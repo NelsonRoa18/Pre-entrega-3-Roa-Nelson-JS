@@ -1,15 +1,18 @@
-
+/// Lanzo el modal a penas carga la pagina
 $(document).ready(function () {
     $('#myModal').modal('toggle')
 });
 
+
+/// Declaro variables para poder traer datos desde el localstorage
 let especialistas = JSON.parse(localStorage.getItem('Especialistas'));
 
 let pacientes = JSON.parse(localStorage.getItem('Pacientes'));
 
+/// Declaro un array vacio para poder guardar los turnos
 let turnos = [];
 
-
+/// Obtengo todos los elementos que usare en el programa
 const btnadministrador = document.getElementById('administrador');
 
 const btnpaciente = document.getElementById('paciente');
@@ -38,7 +41,7 @@ const btnReservarTurno = document.getElementById('btn__turno');
 
 const buscarTurnosDelEspecialista = document.getElementById('especialista__a__filtrar');
 
-
+/// funcion para traer turnos desde el localstorage a la pagina
 function traerTurnos() {
 
     turnosLocalStorage = JSON.parse(localStorage.getItem('Turnos'));
@@ -63,7 +66,7 @@ function traerTurnos() {
 
 
 }
-
+/// funcion que carga turnos en el localstorage
 function cargarTurnosEnLocalStorage() {
 
     const turnosJSON = JSON.stringify(turnos);
@@ -71,13 +74,13 @@ function cargarTurnosEnLocalStorage() {
 
 }
 
-
+/// funcion que carga especialistas en el localstorage
 function cargarEspecialistasEnLocalStorage() {
     const especialistas = ['Medico Clinico', 'Traumatologo', 'Psicologo', 'Dermatologo', 'Ginecologo'];
 
     localStorage.setItem('Especialistas', JSON.stringify(especialistas));
 }
-
+/// funcion que me devuelve los especialistas desde el local storage
 function traerEspecialistasDelLocalStorage() {
 
     especialistasLocalStorage = JSON.parse(localStorage.getItem('Especialistas'));
@@ -86,7 +89,7 @@ function traerEspecialistasDelLocalStorage() {
 
 }
 
-
+/// funcion para cargar los especialistas en un select para que interactue el usuario
 function cargarEspecialistas(array, id) {
 
     let selectEspecialistas = document.getElementById(id);
@@ -104,6 +107,7 @@ function cargarEspecialistas(array, id) {
 
 }
 
+/// funcion de los botones salir, oculto y muestro contenido de la pagina
 function salir() {
 
     divBotones.classList.remove('col-md-3');
@@ -135,6 +139,7 @@ function salir() {
 
 }
 
+/// funcion para mostrar la tabla y botones de administrador
 function muestraTablaYBoton() {
 
     divBotones.classList.remove('col-md-12');
@@ -149,6 +154,7 @@ function muestraTablaYBoton() {
 
 }
 
+/// funcion para mostrar inputs y boton de reservar turno en pacientes
 function muestraInputYBoton() {
 
     divBotones.classList.remove('col-md-12');
@@ -165,6 +171,7 @@ function muestraInputYBoton() {
     cargarEspecialistasEnLocalStorage();
 }
 
+/// funcion para mostrar el formulario en pacientes
 function muestraFormPacientes() {
 
     let valorSelect = selectEspecialistas.options[selectEspecialistas.selectedIndex].value;
@@ -176,6 +183,7 @@ function muestraFormPacientes() {
 
 }
 
+/// funcion que oculta el boton no seleccionado
 function ocultaBoton() {
 
     btnpaciente.classList.remove('btn', 'btn-primary');
@@ -186,8 +194,7 @@ function ocultaBoton() {
 
 }
 
-
-
+/// funcion que se encargar de reservar turnos una vez el usuario haya hecho click en el boton correspondiente
 function reservarTurno(e) {
 
     const valor = selectEspecialistas.options[selectEspecialistas.selectedIndex].value;
@@ -225,7 +232,7 @@ function reservarTurno(e) {
 
 }
 
-
+/// funcion para llenar tabla de turnos
 function llenarTabla(array, id) {
 
     const bodyTabla = document.getElementById(id);
@@ -246,7 +253,7 @@ function llenarTabla(array, id) {
 
 };
 
-
+/// funcion para filtrar por especialista medico
 function filtrar() {
 
 
@@ -269,13 +276,13 @@ function filtrar() {
     }
 
 };
-
+/// funcion me resetea el contenido del formulario - limpiar los campos
 function limpiarFormulario(formulario) {
     selectEspecialistas.selectedIndex = 0;
-    formulario.reset(); ///me resetea el contenido del formulario - limpiar los campos
+    formulario.reset(); 
 };
 
-// Me genera un numero aleatorio entre 1 y 6 
+// funcino que Me genera un numero aleatorio entre 1 y 6 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -284,7 +291,7 @@ function getRandomIntInclusive(min, max) {
 
 
 
-
+/// cargo los datos y los traigo desde el local storage
 cargarEspecialistasEnLocalStorage();
 traerEspecialistasDelLocalStorage();
 cargarEspecialistas(especialistas, 'especialistas');
