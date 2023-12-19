@@ -37,6 +37,10 @@ function cargarEspecialistasEnLocalStorage() {
 
     localStorage.setItem('Especialistas', JSON.stringify(especialistas));
 }
+
+/// cargo los datos y los traigo desde el local storage
+cargarEspecialistasEnLocalStorage();
+
 /// funcion que me devuelve los especialistas desde el local storage
 function traerEspecialistasDelLocalStorage() {
 
@@ -46,9 +50,17 @@ function traerEspecialistasDelLocalStorage() {
 
 }
 
+/// traigo los especialistas desde el localstorage
+traerEspecialistasDelLocalStorage();
+
+/// Declaro variables para poder traer datos desde el localstorage
+let especialistas = JSON.parse(localStorage.getItem('Especialistas'));
+
 /// funcion para cargar los especialistas en un select para que interactue el usuario
 function cargarEspecialistas(array, id) {
 
+    console.log(array);
+    
     let selectEspecialistas = document.getElementById(id);
 
     array.forEach((element, index) => {
@@ -245,3 +257,8 @@ function getRandomIntInclusive(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
+
+
+
+
+cargarEspecialistas(especialistas, 'especialistas');
