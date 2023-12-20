@@ -228,9 +228,16 @@ function filtrar() {
 
     let valor = buscarTurnosDelEspecialista.options[buscarTurnosDelEspecialista.selectedIndex].value;
 
+    console.log(valor);
 
     const resultadoDelFiltradoDeTurnos = turnos.filter((turno) => turno.especialista.includes(especialistas[valor - 1]));
 
+    console.log(resultadoDelFiltradoDeTurnos);
+
+    if (valor == 0) {
+        console.log('No eligio ningun especialista');
+        return -1;
+    }else{
     /// verifico que el array nuevo no este vacio
     if (resultadoDelFiltradoDeTurnos.length === 0) {
         console.log('Este especialista no tiene turnos');
@@ -243,6 +250,8 @@ function filtrar() {
         });
 
     }
+    }
+
 
 };
 /// funcion me resetea el contenido del formulario - limpiar los campos
