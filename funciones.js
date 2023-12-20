@@ -60,7 +60,7 @@ let especialistas = JSON.parse(localStorage.getItem('Especialistas'));
 function cargarEspecialistas(array, id) {
 
     console.log(array);
-    
+
     let selectEspecialistas = document.getElementById(id);
 
     array.forEach((element, index) => {
@@ -171,6 +171,7 @@ function reservarTurno(e) {
     const apellidoInput = document.getElementById('apellido__input').value;
     const edadInput = document.getElementById('edad__input').value;
 
+
     e.preventDefault();
 
     //este metodo no me sirve para lo que necesito hacer ahora tengo que cambiarlo
@@ -194,10 +195,41 @@ function reservarTurno(e) {
         nombreInput !== '' && apellidoInput !== '' && edadInput !== '' && agregarTurno(paciente, especialistas[valor - 1], consultorio);
 
     }
-    validarCampos();
-    cargarTurnosEnLocalStorage();
 
-    limpiarFormulario(formPaciente);
+    Swal.fire({
+        title: '¿Desea confirmar el turno?',
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#0d6efd',
+    }).then((result) => {
+
+        console.log(result);
+
+        if (result.isConfirmed) {
+
+            validarCampos();
+            cargarTurnosEnLocalStorage();
+        
+            Toastify({
+                text: "Turno reservado con exito!",
+                duration: 3000,
+                close: true,
+                gravity: "bottom", // `top` or `bottom`
+                position: "right", // `left`, `center` or `right`
+                stopOnFocus: true, // Prevents dismissing of toast on hover
+                style: {
+                  background: "linear-gradient(to right, #16F0F5, #0d6efd)",
+                },
+              }).showToast();
+
+              limpiarFormulario(formPaciente);
+        
+        }
+
+    })
+
+
 
 }
 
@@ -225,31 +257,41 @@ function llenarTabla(array, id) {
 /// funcion para filtrar por especialista medico
 function filtrar() {
 
-
     let valor = buscarTurnosDelEspecialista.options[buscarTurnosDelEspecialista.selectedIndex].value;
-
-    console.log(valor);
-
     const resultadoDelFiltradoDeTurnos = turnos.filter((turno) => turno.especialista.includes(especialistas[valor - 1]));
-
-    console.log(resultadoDelFiltradoDeTurnos);
 
     if (valor == 0) {
         console.log('No eligio ningun especialista');
+        Swal.fire({
+            title: 'Error!',
+            text: 'No eligio ningun especialista',
+            icon: 'error',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#0d6efd',
+        })
+
+        /// VACIAR TABLA DE FILTRADO
+
         return -1;
-    }else{
-    /// verifico que el array nuevo no este vacio
-    if (resultadoDelFiltradoDeTurnos.length === 0) {
-        console.log('Este especialista no tiene turnos');
-        alert('Este especialista no tiene turnos');
     } else {
+        /// verifico que el array nuevo no este vacio
+        if (resultadoDelFiltradoDeTurnos.length === 0) {
+            console.log('Este especialista no tiene turnos');
+            Swal.fire({
+                title: 'Error!',
+                text: 'Este especialista no tiene turnos',
+                icon: 'error',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#0d6efd',
+            })
+        } else {
 
-        resultadoDelFiltradoDeTurnos.forEach(turno => {
-            llenarTabla(resultadoDelFiltradoDeTurnos, 'turnos__filtrados')
+            resultadoDelFiltradoDeTurnos.forEach(turno => {
+                llenarTabla(resultadoDelFiltradoDeTurnos, 'turnos__filtrados')
 
-        });
+            });
 
-    }
+        }
     }
 
 
@@ -257,7 +299,7 @@ function filtrar() {
 /// funcion me resetea el contenido del formulario - limpiar los campos
 function limpiarFormulario(formulario) {
     selectEspecialistas.selectedIndex = 0;
-    formulario.reset(); 
+    formulario.reset();
 };
 
 // funcino que Me genera un numero aleatorio entre 1 y 6 

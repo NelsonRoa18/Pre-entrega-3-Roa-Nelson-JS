@@ -8,6 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <title>Consultorio Piculi</title>
 </head>
 
@@ -108,16 +112,18 @@
                     <form class="hide" id="form__paciente">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="nombre__input" placeholder="Nombre">
-                            <label for="floatingInput">Nombre </label>
+                            <label for="nombre__input">Nombre </label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="apellido__input" placeholder="Apellido">
-                            <label for="floatingPassword">Apellido</label>
+                            <label for="apellido__input">Apellido</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="number" class="form-control" id="edad__input" placeholder="Edad">
-                            <label for="floatingPassword">Edad</label>
+                            <label for="edad__input">Edad</label>
                         </div>
+
+
                         <button class="btn btn-primary" type="submit" id="btn__turno">Reservar Turno</button>
                     </form>
                 </div>
@@ -140,6 +146,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.1/dist/sweetalert2.all.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!--HOLAAA!-->
     <script src="Paciente.js"></script>
     <Script src="Turno.js"></script>
